@@ -45,3 +45,5 @@ ghcide
 
     make .envrc
       export GHC_VERSION=8.6.5
+
+    ghc-switch to version needed (i.e. 8.6.5)
