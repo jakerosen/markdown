@@ -1,0 +1,31 @@
+There are different logical operators for AND and OR
+
+&& and || behave like you expect them to in Java
+'and' and 'or' (no quotes) have lower precidence than && and ||
+  THIS PRESIDENCE BEHAVES IN UNEXPECTED WAYS
+  apparently, the assignment operator = has HIGHER presidence than 'and and 'or'
+  $false = false and true; behaves like ($false = false) and true;
+  I'm not even sure what that interpretation even does, but it definitely
+  doesn't work right. An example from as01,
+    $isPrime = $isPrime && ($candidate % $prime != 0); // behaves normally
+    $isPrime = $isPrime and ($candidate % $prime != 0); // fails
+    $isPrime = ($isPrime and ($candidate % $prime != 0)); // works
+  Notice how I have to add an extra set of parenthesis around the whole thing
+  to avoid having = take precidence over and. I believe what happens when I
+  don't is that it reduces like so:
+    ($isPrime = $isPrime) and ($candidate % $prime != 0);
+    (true) and ($candidate % $prime != 0); // reduce first parenthesis
+    (true) and (false); // reduce second parenthesis
+    false; // reduce final expression, but note how it doesn't assign to
+           // $isPrime like I expected because the assignment was done first
+           // therefore, $isPrime remains true, despite expecting it to be false
+  Here is a more generic example:
+    $some_bool = true;
+    $some_bool = $some_bool and false; // you should expect the result to be
+                                       // $some_bool = false; instead...
+    ($some_bool = $some_bool) and false; // evaluate presidence
+    ($some_bool) and false; // reduce assignment operation (no effect)
+    (true) and false; // replace variable with its value (true)
+    false; // reduce final expression
+           // no further assignment is done, so $some_bool remains true
+           // unbelievable

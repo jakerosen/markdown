@@ -1,0 +1,20 @@
+# simple makefile
+# The makefile name must be "makefile"
+# Thank you Steve!
+
+# define target, its dependencies and files
+timetest: main.o time.o
+	g++ -o timetest main.o time.o
+
+# define how each object file is to be built
+main.o: main.cpp time.h
+	g++ -c main.cpp
+
+time.o: time.cpp time.h
+	g++ -c time.cpp
+
+# clean up
+clean:
+	rm -f timetest *.o *~
+
+

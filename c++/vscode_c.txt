@@ -1,0 +1,7 @@
+How to build a project with cmake tools in VSCode
+
+Open command window (ctrl-shift-p) -> cmake: quick start
+select options (library or executable)
+select kit and variant if needed (commands cmake: select a kit etc.)
+  kit is compiler, variant is "build mode"
+compile with command cmake: compile
